@@ -1,9 +1,12 @@
-
 package com.company.order.service;
-import java.util.*;
-import com.company.order.entity.Order;
+
+import com.company.order.dto.*;
+
+import java.util.UUID;
 
 public interface OrderService {
-  Order create(Order o);
-  List<Order> findAll();
+
+  OrderResponse createOrder(CreateOrderRequest request);
+
+  OrderResponse assignDriver(UUID orderId, UUID driverId);
 }

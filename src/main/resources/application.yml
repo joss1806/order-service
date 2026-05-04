@@ -1,14 +1,32 @@
+server:
+  port: 8081
 
 spring:
+  application:
+    name: order-service
+
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:orderdb
     driverClassName: org.h2.Driver
+    username: sa
+    password:
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: false
+
   h2:
     console:
       enabled: true
-server:
-  port: 8081
+      path: /h2-console
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+logging:
+  level:
+    org.springframework: INFO

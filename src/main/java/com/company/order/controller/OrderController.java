@@ -1,20 +1,29 @@
-
 package com.company.order.controller;
-import org.springframework.web.bind.annotation.*;
-import lombok.RequiredArgsConstructor;
-import java.util.*;
+
+import com.company.order.dto.*;
 import com.company.order.service.OrderService;
-import com.company.order.entity.Order;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
+
   private final OrderService service;
 
   @PostMapping
-  public Order create(@RequestBody Order o){ return service.create(o); }
+  public OrderResponse create(@RequestBody CreateOrderRequest request) {
+    return service.createOrder(request);
+  }
 
-  @GetMapping
-  public List<Order> list(){ return service.findAll(); }
+  @PostMapping("/{orderId}/assign/{driverId}")
+  public OrderResponse assignDriver(
+          @PathVariable UUID orderId,
+          @PathVariable UUID driverId) {
+
+    return service.assignDriver(orderId, driverId);
+  }
 }
