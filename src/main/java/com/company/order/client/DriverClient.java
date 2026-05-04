@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@FeignClient(name = "driver-service", url = "http://localhost:8082")
+@FeignClient(name = "driver-service", url = "http://driver-service:8082")
 public interface DriverClient {
 
     @GetMapping("/drivers/{id}")
